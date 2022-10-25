@@ -13,7 +13,7 @@ public class Cliente {
     private Long id;
     private String nome;
 
-
+        String  Apaga;
     public Cliente() {
     }
 
