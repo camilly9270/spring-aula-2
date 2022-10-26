@@ -40,6 +40,7 @@ public class Controller {
         if (velhoCliente.isPresent()) {
             Cliente cliente = velhoCliente.get();
             cliente.setEndereco(clienteDTO.getEndereco());
+            repository.save(cliente);
             return "Cliente de ID "+cliente.getId()+" atualizado com sucesso!";
 
         } else {
