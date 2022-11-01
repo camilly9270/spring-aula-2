@@ -1,4 +1,4 @@
-package Spring.Camilly;
+package Spring.Camilly.dto;
 
 public class ClienteDTO {
     private String endereco;

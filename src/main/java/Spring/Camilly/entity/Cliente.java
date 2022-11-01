@@ -1,9 +1,7 @@
-package Spring.Camilly;
+package Spring.Camilly.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.List;
 
 
 @Entity
@@ -13,6 +11,8 @@ public class Cliente {
     private Long id;
     private String nome;
     private String endereco;
+    @OneToMany(cascade = CascadeType.ALL)
+    private List<Produto> produtos;
 
     public Cliente() {
     }
@@ -25,8 +25,8 @@ public class Cliente {
         this.endereco = endereco;
     }
 
-    public Cliente(Long id, String nome, String endereco) {
-        this.id = id;
+    public Cliente(List<Produto> produtos, String nome, String endereco) {
+        this.produtos = produtos;
         this.nome = nome;
         this.endereco= endereco;
     }
@@ -35,7 +35,13 @@ public class Cliente {
         return id;
     }
 
+    public List<Produto> getProdutos() {
+        return produtos;
+    }
 
+    public void setProdutos(List<Produto> produtos) {
+        this.produtos = produtos;
+    }
 
     public String getNome() {
         return nome;

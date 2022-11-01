@@ -1,5 +1,8 @@
-package Spring.Camilly;
+package Spring.Camilly.controller;
 
+import Spring.Camilly.entity.Cliente;
+import Spring.Camilly.dto.ClienteDTO;
+import Spring.Camilly.repository.Repository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -26,8 +29,21 @@ public class Controller {
         return clienteReturned;
     }
     @DeleteMapping("/{id}")
-    public void deleteClienteById(@PathVariable Long id){
-        repository.deleteById(id);
+    public String deleteClienteById(@PathVariable Long id){
+        try{
+        Optional<Cliente> cliente = Optional.of(repository.getById(id));
+        if (cliente.isPresent()){
+            repository.deleteById(id);
+            return "Cliente de "+" deletado com sucesso!";
+        }else {
+
+            throw new Exception();
+        }
+        }catch (Exception e){
+            e.printStackTrace();
+            return "O cliente de "+id+" não existe para ser deletado!"+
+                    "Por favor, entre em contato com o atendimento 999 999 666";
+        }
     }
     @GetMapping
     public List<Cliente> listClientes(){
